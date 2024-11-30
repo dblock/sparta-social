@@ -1,6 +1,8 @@
 import type { Activity } from '#/db'
+import { decode } from 'multiformats/dist/src/varint'
 import { html } from '../lib/view'
 import { shell } from './shell'
+import polyline from '@mapbox/polyline'
 
 const TODAY = new Date().toDateString()
 
@@ -49,6 +51,7 @@ function content({ activities, didHandleMap, profile }: Props) {
       ${activities.map((activity, i) => {
         const handle = didHandleMap[activity.authorDid] || activity.authorDid
         const date = ts(activity)
+        const map = mapUrl(activity)
         return html`
           <div class=${i === 0 ? 'activity-line no-line' : 'activity-line'}>
             <div>
@@ -56,6 +59,9 @@ function content({ activities, didHandleMap, profile }: Props) {
             </div>
             <div class="desc">
               <a class="author" href=${toBskyLink(handle)}>@${handle}</a>
+            </div>
+            <div class="map">
+              <img src=${map}></img>
             </div>
           </div>
         `
@@ -73,4 +79,20 @@ function ts(activity: Activity) {
   const indexedAt = new Date(activity.indexedAt)
   if (createdAt < indexedAt) return createdAt.toDateString()
   return indexedAt.toDateString()
+}
+
+function mapUrl(activity: Activity) {
+  if (process.env.GOOGLE_STATIC_MAPS_API_KEY && activity.mapPolyline) {
+    const decodedPolyline = polyline.decode(activity.mapPolyline)
+    if (decodedPolyline.length > 0) {
+      const startAt = decodedPolyline[0]
+      const endAt = decodedPolyline[decodedPolyline.length - 1]
+
+      return "https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&path=enc:" + activity.mapPolyline + 
+        "&key=" + process.env.GOOGLE_STATIC_MAPS_API_KEY + 
+        "&size=800x800" +
+        "&markers=color:yellow|label:S|" + startAt[0] + "," + startAt[1] +
+        "&markers=color:green|label:F|" + endAt[0] + "," + endAt[1]
+    }
+  }
 }

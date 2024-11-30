@@ -23,7 +23,7 @@ export type Activity = {
   distanceInCm: number
   movingTimeInMs: number
   totalElevationGainInCm: number
-  mapSummaryPolyline: string
+  mapPolyline: string
   startAtInUtc: string
   startAtTimeZone: string
   authorDid: string
@@ -68,7 +68,7 @@ migrations['001'] = {
       .addColumn('elapsedTimeInMs', 'integer')
       .addColumn('movingTimeInMs', 'integer')
       .addColumn('totalElevationGainInCm', 'integer')
-      .addColumn('mapSummaryPolyline', 'varchar')
+      .addColumn('mapPolyline', 'varchar')
       .addColumn('startAtInUTC', 'varchar')
       .addColumn('startAtTimeZone', 'varchar')
       .addColumn('createdAt', 'varchar', (col) => col.notNull())

@@ -14,7 +14,7 @@ export interface Record {
   movingTimeInMs?: number
   elapsedTimeInMs?: number
   totalElevationGainInCm?: number
-  mapSummaryPolyline?: string
+  mapPolyline?: string
   startAtInUTC?: string
   startAtTimeZone?: string
   createdAt: string

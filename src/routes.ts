@@ -16,6 +16,7 @@ import * as Activity from '#/lexicon/types/org/sweatosphere/activity'
 import * as Profile from '#/lexicon/types/app/bsky/actor/profile'
 import FitParser from 'fit-file-parser'
 import multer from 'multer'
+import polyline from '@mapbox/polyline'
 
 const upload = multer({ storage: multer.memoryStorage() })
 
@@ -232,17 +233,23 @@ export const createRouter = (ctx: AppContext) => {
           movingTimeInMs: data.sessions[0].total_timer_time * 1000,
           elapsedTimeInMs: data.sessions[0].total_elapsed_time * 1000,
           totalElevationGainInCm: (data.sessions[0].total_ascent + data.sessions[0].total_descent) * 100,
-          mapSummaryPolyline: "", // TODO
+          mapPolyline: polyline.encode(
+            data.records
+              .filter((pt) => pt.position_lat && pt.position_long )
+              .map((pt) => [pt.position_lat, pt.position_long])
+          ),
           startAtInUTC: data.sessions[0].start_time.toISOString(),
           startAtTimeZone: data.sessions[0].timestamp.toISOString(),
           createdAt: new Date().toISOString(),
         }   
 
-        if (!Activity.validateRecord(record).success) {
+        const validationResult = Activity.validateRecord(record)
+        if (! validationResult.success) {
+          console.log(validationResult)
           return res
             .status(400)
             .type('html')
-            .send('<h1>Error: Invalid activity</h1>')
+            .send('<h1>Error: Invalid activity (' + validationResult.error + ')</h1>')
         }
 
         let uri
@@ -279,7 +286,7 @@ export const createRouter = (ctx: AppContext) => {
               movingTimeInMs: record.movingTimeInMs,
               elapsedTimeInMs: record.elapsedTimeInMs,
               totalElevationGainInCm: record.totalElevationGainInCm,
-              mapSummaryPolyline: record.mapSummaryPolyline,
+              mapPolyline: record.mapPolyline,
               startAtInUTC: record.startAtInUTC,
               startAtTimeZone: record.startAtTimeZone,
               authorDid: agent.assertDid,

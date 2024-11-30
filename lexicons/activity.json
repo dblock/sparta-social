@@ -7,19 +7,57 @@
       "key": "tid",
       "record": {
         "type": "object",
-        "required": ["title", "activityType", "createdAt"],
+        "required": [
+          "title",
+          "activityType",
+          "createdAt"
+        ],
         "properties": {
-          "title": { "type": "string", "minLength": 1, "maxLength": 32 },
-          "description": { "type": "string", "maxLength": 256 },
-          "activityType": { "type": "string", "minLength": 1, "maxLength": 16 },
-          "distanceInCm": { "type": "integer", "minimum": 0  },
-          "movingTimeInMs": { "type": "integer", "minimum": 0  },
-          "elapsedTimeInMs": { "type": "integer", "minimum": 0  },
-          "totalElevationGainInCm": { "type": "integer", "minimum": 0  },
-          "mapSummaryPolyline": { "type": "string", "maxLength": 1024 },
-          "startAtInUTC": { "type": "string", "format": "datetime" },
-          "startAtTimeZone": { "type": "string" },
-          "createdAt": { "type": "string", "format": "datetime" }
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "activityType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16
+          },
+          "distanceInCm": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "movingTimeInMs": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "elapsedTimeInMs": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "totalElevationGainInCm": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "mapPolyline": {
+            "type": "string",
+            "maxLength": 16384
+          },
+          "startAtInUTC": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "startAtTimeZone": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          }
         }
       }
     }

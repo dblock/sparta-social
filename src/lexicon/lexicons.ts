@@ -45,9 +45,9 @@ export const schemaDict = {
               type: 'integer',
               minimum: 0,
             },
-            mapSummaryPolyline: {
+            mapPolyline: {
               type: 'string',
-              maxLength: 1024,
+              maxLength: 16384,
             },
             startAtInUTC: {
               type: 'string',
@@ -320,8 +320,9 @@ export const schemaDict = {
       },
     },
   },
-}
-export const schemas: LexiconDoc[] = Object.values(schemaDict) as LexiconDoc[]
+} as const satisfies Record<string, LexiconDoc>
+
+export const schemas = Object.values(schemaDict)
 export const lexicons: Lexicons = new Lexicons(schemas)
 export const ids = {
   OrgSweatosphereActivity: 'org.sweatosphere.activity',

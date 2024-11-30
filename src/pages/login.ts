@@ -22,6 +22,7 @@ function content({ error }: Props) {
           type="text"
           name="handle"
           placeholder="Enter your handle (eg alice.bsky.social)"
+          value="${process.env.DEFAULT_SOCIAL_HANDLE}"
           required
         />
         <button type="submit">Log in</button>
