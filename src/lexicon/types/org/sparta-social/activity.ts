@@ -25,11 +25,11 @@ export function isRecord(v: unknown): v is Record {
   return (
     isObj(v) &&
     hasProp(v, '$type') &&
-    (v.$type === 'org.sweatosphere.activity#main' ||
-      v.$type === 'org.sweatosphere.activity')
+    (v.$type === 'org.sparta-social.activity#main' ||
+      v.$type === 'org.sparta-social.activity')
   )
 }
 
 export function validateRecord(v: unknown): ValidationResult {
-  return lexicons.validate('org.sweatosphere.activity#main', v)
+  return lexicons.validate('org.sparta-social.activity#main', v)
 }

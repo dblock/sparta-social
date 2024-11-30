@@ -30,15 +30,15 @@ export class Server {
 
 export class OrgNS {
   _server: Server
-  sweatosphere: OrgSweatosphereNS
+  sparta-social: OrgFSpartaSocialNS
 
   constructor(server: Server) {
     this._server = server
-    this.sweatosphere = new OrgSweatosphereNS(server)
+    this.sparta-social = new OrgSpartaSocialNS(server)
   }
 }
 
-export class OrgSweatosphereNS {
+export class OrgSpartaSocialNS {
   _server: Server
 
   constructor(server: Server) {

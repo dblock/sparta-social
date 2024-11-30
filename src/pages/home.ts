@@ -23,7 +23,7 @@ function content({ activities, didHandleMap, profile }: Props) {
   return html`<div id="root">
     <div class="error"></div>
     <div id="header">
-      <h1>Sweatosphere</h1>
+      <h1>Sparta Social</h1>
     </div>
     <div class="container">
       <div class="card">

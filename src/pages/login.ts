@@ -13,7 +13,7 @@ export function login(props: Props) {
 function content({ error }: Props) {
   return html`<div id="root">
     <div id="header">
-      <h1>Sweatosphere</h1>
+      <h1>SpartaSocial</h1>
       <p>Upload your activity to the Atmosphere.</p>
     </div>
     <div class="container">

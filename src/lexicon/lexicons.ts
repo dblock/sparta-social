@@ -4,9 +4,9 @@
 import { LexiconDoc, Lexicons } from '@atproto/lexicon'
 
 export const schemaDict = {
-  OrgSweatosphereActivity: {
+  OrgSpartaSocialActivity: {
     lexicon: 1,
-    id: 'org.sweatosphere.activity',
+    id: 'org.sparta-social.activity',
     defs: {
       main: {
         type: 'record',
@@ -325,7 +325,7 @@ export const schemaDict = {
 export const schemas = Object.values(schemaDict)
 export const lexicons: Lexicons = new Lexicons(schemas)
 export const ids = {
-  OrgSweatosphereActivity: 'org.sweatosphere.activity',
+  OrgSpartaSocialActivity: 'org.sparta-social.activity',
   ComAtprotoLabelDefs: 'com.atproto.label.defs',
   AppBskyActorProfile: 'app.bsky.actor.profile',
   ComAtprotoRepoStrongRef: 'com.atproto.repo.strongRef',

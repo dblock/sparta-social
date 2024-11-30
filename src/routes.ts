@@ -12,7 +12,7 @@ import { home } from '#/pages/home'
 import { login } from '#/pages/login'
 import { env } from '#/lib/env'
 import { page } from '#/lib/view'
-import * as Activity from '#/lexicon/types/org/sweatosphere/activity'
+import * as Activity from '#/lexicon/types/org/sparta-social/activity'
 import * as Profile from '#/lexicon/types/app/bsky/actor/profile'
 import FitParser from 'fit-file-parser'
 import multer from 'multer'
@@ -225,7 +225,7 @@ export const createRouter = (ctx: AppContext) => {
         const rkey = TID.nextStr()
 
         const record = {
-          $type: 'org.sweatosphere.activity',
+          $type: 'org.sparta-social.activity',
           title: req.file.originalname,
           description: "",
           activityType: "Run",
@@ -257,7 +257,7 @@ export const createRouter = (ctx: AppContext) => {
           // Write the activity record to the user's repository
           const res = await agent.com.atproto.repo.putRecord({
             repo: agent.assertDid,
-            collection: 'org.sweatosphere.activity',
+            collection: 'org.sparta-social.activity',
             rkey,
             record,
             validate: false,

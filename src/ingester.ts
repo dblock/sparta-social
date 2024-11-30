@@ -2,7 +2,7 @@ import pino from 'pino'
 import { IdResolver } from '@atproto/identity'
 import { Firehose } from '@atproto/sync'
 import type { Database } from '#/db'
-import * as Activity from '#/lexicon/types/org/sweatosphere/activity'
+import * as Activity from '#/lexicon/types/org/sparta-social/activity'
 
 export function createIngester(db: Database, idResolver: IdResolver) {
   const logger = pino({ name: 'firehose ingestion' })
@@ -16,7 +16,7 @@ export function createIngester(db: Database, idResolver: IdResolver) {
 
         // If the write is a valid activity update
         if (
-          evt.collection === 'org.sweatosphere.activity' &&
+          evt.collection === 'org.sparta-social.activity' &&
           Activity.isRecord(record) &&
           Activity.validateRecord(record).success
         ) {
@@ -58,7 +58,7 @@ export function createIngester(db: Database, idResolver: IdResolver) {
         }
       } else if (
         evt.event === 'delete' &&
-        evt.collection === 'org.sweatosphere.activity'
+        evt.collection === 'org.sparta-social.activity'
       ) {
         // Remove the activity from our SQLite
         await db.deleteFrom('activity').where('uri', '=', evt.uri.toString()).execute()
@@ -67,7 +67,7 @@ export function createIngester(db: Database, idResolver: IdResolver) {
     onError: (err) => {
       logger.error({ err }, 'error on firehose ingestion')
     },
-    filterCollections: ['org.sweatosphere.activity'],
+    filterCollections: ['org.sparta-social.activity'],
     excludeIdentity: true,
     excludeAccount: true,
   })
