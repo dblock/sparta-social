@@ -3,6 +3,7 @@ import { decode } from 'multiformats/dist/src/varint'
 import { html } from '../lib/view'
 import { shell } from './shell'
 import polyline from '@mapbox/polyline'
+import { duration } from 'duration-pretty'
 
 const TODAY = new Date().toDateString()
 
@@ -31,7 +32,7 @@ function content({ activities, didHandleMap, profile }: Props) {
           ? html`<form action="/logout" method="post" class="session-form">
               <div>
                 Hi, <strong>${profile.displayName || 'friend'}</strong>. 
-                Upload an activity.
+                Upload a .FIT file.
               </div>
               <div>
                 <button type="submit">Log out</button>
@@ -55,10 +56,13 @@ function content({ activities, didHandleMap, profile }: Props) {
         return html`
           <div class=${i === 0 ? 'activity-line no-line' : 'activity-line'}>
             <div>
-              <div class="title">${activity.title}</div>
+              <div class="title">${activity.activityType}</div>
             </div>
             <div class="desc">
               <a class="author" href=${toBskyLink(handle)}>@${handle}</a>
+              <div class="distance"><b>Distance:</b> ${distanceInMeters(activity)}mi</div>
+              <div class="time"><b>Time:</b> ${timeInSeconds(activity)}</div>
+              <div class="time"><b>Start:</b> ${activity.startAtInUTC}</div>             
             </div>
             <div class="map">
               <img src=${map}></img>
@@ -95,4 +99,12 @@ function mapUrl(activity: Activity) {
         "&markers=color:green|label:F|" + endAt[0] + "," + endAt[1]
     }
   }
+}
+
+function distanceInMeters(activity: Activity) {
+  return (activity.distanceInCm / 100 * 0.00062137).toFixed(2)
+}
+
+function timeInSeconds(activity: Activity) {
+  return duration(activity.movingTimeInMs, 'milliseconds').format('H:mm:ss')
 }

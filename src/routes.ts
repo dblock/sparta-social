@@ -202,8 +202,6 @@ export const createRouter = (ctx: AppContext) => {
     '/activity',
     upload.single("activity"),
     handler(async (req, res) => {
-      console.log(req.file)
-
       // If the user is signed in, get an agent which communicates with their server
       const agent = await getSessionAgent(req, res, ctx)
       if (!agent) {
@@ -241,11 +239,10 @@ export const createRouter = (ctx: AppContext) => {
           startAtInUTC: data.sessions[0].start_time.toISOString(),
           startAtTimeZone: data.sessions[0].timestamp.toISOString(),
           createdAt: new Date().toISOString(),
-        }   
-
+        }
+        
         const validationResult = Activity.validateRecord(record)
         if (! validationResult.success) {
-          console.log(validationResult)
           return res
             .status(400)
             .type('html')

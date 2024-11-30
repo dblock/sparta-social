@@ -25,6 +25,7 @@
     "@mapbox/polyline": "^1.2.1",
     "better-sqlite3": "^11.1.2",
     "dotenv": "^16.4.5",
+    "duration-pretty": "^0.1.1",
     "envalid": "^8.0.0",
     "express": "^4.19.2",
     "fit-file-parser": "^1.20.0",
