@@ -27,7 +27,7 @@
     "dotenv": "^16.4.5",
     "duration-pretty": "^0.1.1",
     "envalid": "^8.0.0",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
     "fit-file-parser": "^1.20.0",
     "iron-session": "^8.0.2",
     "kysely": "^0.27.4",
