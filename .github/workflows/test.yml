@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install Dependencies
         run: npm install
@@ -22,4 +22,4 @@ jobs:
           npm run test
 
       - name: Upload Test Coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
