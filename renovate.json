@@ -4,5 +4,11 @@
     "config:recommended",
     "group:all",
     "schedule:monthly"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["uhtml"],
+      "enabled": false
+    }
   ]
 }
