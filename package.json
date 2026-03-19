@@ -31,7 +31,7 @@
     "express": "^5.2.1",
     "fit-file-parser": "^2.0.0",
     "iron-session": "^8.0.2",
-    "kysely": "^0.28.0",
+    "kysely": "^0.28.12",
     "multer": "^2.0.0",
     "multiformats": "^13.0.0",
     "pino": "^10.0.0",
