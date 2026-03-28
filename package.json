@@ -32,7 +32,7 @@
     "fit-file-parser": "^2.0.0",
     "iron-session": "^8.0.2",
     "kysely": "^0.28.14",
-    "multer": "^2.0.0",
+    "multer": "^2.1.1",
     "multiformats": "^13.0.0",
     "pino": "^10.0.0",
     "uhtml": "^4.5.9"
