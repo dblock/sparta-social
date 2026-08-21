@@ -20,7 +20,7 @@
     "@atproto/identity": "^0.5.0",
     "@atproto/lexicon": "^0.7.0",
     "@atproto/oauth-client-node": "^0.5.0",
-    "@atproto/sync": "^0.4.0",
+    "@atproto/sync": "^0.2.4",
     "@atproto/syntax": "^0.7.0",
     "@atproto/xrpc-server": "^0.12.0",
     "@mapbox/polyline": "^1.2.1",
